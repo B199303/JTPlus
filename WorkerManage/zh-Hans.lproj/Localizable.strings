@@ -1,0 +1,4 @@
+"login.user.placeholder" = "请输入账号";
+"login.pass.placeholder" = "请输入密码";
+"login.button.text" = "登录";
+"login.error.tip" = "有未输入项";

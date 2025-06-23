@@ -1,0 +1,765 @@
+
+[2023-10-18 14:56:34] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 14:56:34] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 14:56:35] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 14:56:35] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697612194887053,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 14:56:35] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697612194887052,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 14:56:35] TPNS注册成功
+[2023-10-18 15:01:11] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:01:11] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:01:11] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:01:11] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697612471307846,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:01:11] TPNS注册成功
+[2023-10-18 15:01:11] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697612471307847,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:22:09] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:22:09] 应用服务状态: success
+[2023-10-18 15:22:09] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:22:09] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:22:09] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697613728974676,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:22:09] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697613728974677,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:30:37] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:30:37] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:30:37] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:30:37] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614237381757,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:30:37] TPNS注册成功
+[2023-10-18 15:30:37] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614237381758,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:38:21] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:38:21] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:38:22] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:38:22] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614701966849,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:38:22] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614701966848,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:38:22] TPNS注册成功
+[2023-10-18 15:41:49] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:41:49] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:41:49] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:41:49] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614909112295,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:41:49] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614909112294,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:41:49] TPNS注册成功
+[2023-10-18 15:43:02] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:43:02] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:43:03] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:43:03] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614982775735,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:43:03] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697614982775734,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:43:03] TPNS注册成功
+[2023-10-18 15:44:36] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:44:36] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:44:37] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:44:37] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615076733255,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:44:37] TPNS注册成功
+[2023-10-18 15:44:37] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615076733256,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:55:14] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:55:14] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:55:14] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:55:15] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615714685068,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:55:15] TPNS注册成功
+[2023-10-18 15:55:15] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615714685069,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:56:28] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:56:28] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:56:29] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:56:29] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615788976146,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:56:29] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615788976145,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:56:29] TPNS注册成功
+[2023-10-18 15:58:57] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 15:58:57] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 15:58:58] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 15:58:58] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615937935515,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 15:58:58] TPNS注册成功
+[2023-10-18 15:58:58] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697615937935516,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 16:02:06] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-18 16:02:06] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-18 16:02:07] TPNS session connected and prepare to subscribe topic!
+[2023-10-18 16:02:07] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697616126936798,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-18 16:02:07] TPNS注册成功
+[2023-10-18 16:02:07] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697616126936799,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:33:12] 应用服务状态: success
+[2023-10-19 10:33:12] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:33:12] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 10:33:12] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 10:33:12] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682792398471,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:33:12] TPNS注册成功
+[2023-10-19 10:33:12] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682792398470,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:34:47] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 10:34:47] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 10:34:48] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:34:48] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682887853161,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:34:48] TPNS注册成功
+[2023-10-19 10:34:48] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682887853162,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:36:01] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 10:36:01] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 10:36:02] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:36:02] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682961823970,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:36:02] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697682961823969,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:36:02] TPNS注册成功
+[2023-10-19 10:38:17] TPNS session state closed
+[2023-10-19 10:38:27] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:38:36] TPNS session state closed
+[2023-10-19 10:43:22] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 10:43:22] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 10:43:22] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:43:22] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697683401996496,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:43:22] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697683401996495,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:43:22] TPNS注册成功
+[2023-10-19 10:45:01] TPNS session state closed
+[2023-10-19 10:49:10] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 10:49:10] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 10:49:10] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 10:49:10] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697683750199143,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:49:10] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697683750199142,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 10:49:10] TPNS注册成功
+[2023-10-19 11:04:35] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 11:04:35] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 11:04:35] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 11:04:36] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684675627904,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 11:04:36] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684675627903,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 11:04:36] TPNS注册成功
+[2023-10-19 11:07:11] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 11:07:11] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 11:07:12] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 11:07:12] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684831780010,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 11:07:12] TPNS注册成功
+[2023-10-19 11:07:12] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684831780011,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 11:09:47] Current APNS device token is 507209d3bb3d83b7019b08151fc637975e2ef0c97d90c6e180ce82395e055718
+[2023-10-19 11:09:47] Current TPNS token is 09072ec683405e02eff1b25a73cb3c083c0d
+[2023-10-19 11:09:47] TPNS session connected and prepare to subscribe topic!
+[2023-10-19 11:09:47] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684987514303,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}
+
+[2023-10-19 11:09:47] TPNS注册成功
+[2023-10-19 11:09:47] 
+{
+  "result" : {
+    "tokenCrc32" : 0,
+    "ticket" : "",
+    "otherPushTokenType" : 0,
+    "otherPushTokenCrc32" : 0,
+    "ticketType" : 0,
+    "token" : "09072ec683405e02eff1b25a73cb3c083c0d",
+    "guid" : 1
+  },
+  "id" : 1697684987514304,
+  "errMsg" : "success",
+  "cmd" : "register",
+  "ret" : 0
+}

@@ -1,0 +1,65 @@
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+platform :ios, '12.0'
+inhibit_all_warnings!
+target 'WorkerManage' do
+  use_frameworks!
+  pod 'Alamofire'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'SwiftEntryKit'
+  pod 'SwiftMessages'
+  pod 'GRDB.swift'
+  pod 'Moya/RxSwift'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SwifterSwift'
+  pod 'Toast-Swift'
+  pod 'MJRefresh'
+  pod 'AlamofireImage'
+  pod 'SnapKit', '5.0.1'
+  pod 'DeviceKit'
+  pod 'JXSegmentedView'
+  pod 'ObjectMapper'
+  pod 'SwiftyRSA'
+  pod 'SideMenu', '~> 6.0'
+  pod 'Kingfisher'
+  pod 'JGProgressHUD'
+  pod 'BaiduMapKit', '6.0.0'
+  pod 'BMKLocationKit'
+  pod 'JXBanner'
+  pod 'Bugly'
+  pod 'FSCalendar'
+  pod 'Charts'
+  pod 'Tiercel'
+  pod 'CropViewController'
+  pod "SwiftChart"
+  pod 'SwiftCharts'
+  pod 'SwiftIconFont'
+  pod 'swiftScan'
+  pod 'Starscream', '~> 4.0.6'
+end
+
+post_install do |installer|
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+  end
+  remove_swiftui()
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      end
+    end
+  end
+end
+
+def remove_swiftui
+  # 解决 xcode13 Release模式下SwiftUI报错问题
+  system("rm -rf ./Pods/Kingfisher/Sources/SwiftUI")
+  code_file = "./Pods/Kingfisher/Sources/General/KFOptionsSetter.swift"
+  code_text = File.read(code_file)
+  code_text.gsub!(/#if canImport\(SwiftUI\) \&\& canImport\(Combine\)(.|\n)+#endif/,'')
+  system("rm -rf " + code_file)
+  aFile = File.new(code_file, 'w+')
+  aFile.syswrite(code_text)
+  aFile.close()
+end
