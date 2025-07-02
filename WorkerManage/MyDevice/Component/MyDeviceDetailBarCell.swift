@@ -45,8 +45,6 @@ class MyDeviceDetailBarCell: UITableViewCell {
         chartView.gridBackgroundColor = .cyan
         chartView.borderColor = .clear
         
-//        chartView.delegate = self
-        
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = false
         
@@ -109,8 +107,6 @@ class MyDeviceDetailBarCell: UITableViewCell {
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         
-        // ChartYAxis *leftAxis = chartView.leftAxis;
-        
         
     }
     
@@ -138,7 +134,6 @@ class MyDeviceDetailBarCell: UITableViewCell {
             chartView.data = data
         }
         
-//        chartView.setNeedsDisplay()
     }
     
     required init?(coder: NSCoder) {

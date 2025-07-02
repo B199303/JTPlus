@@ -86,22 +86,6 @@ class CheckUpdateCell: UITableViewCell {
             $0.bottom.equalToSuperview().offset(-11*CGFloat.widthSize())
         }
     }
-    
-//    func bind(data:UpgradeAppData){
-//        var content = ""
-//        for item in data.versionInfo{
-//            if content != ""{
-//                let str = "\n[\(item.type)]\(item.desc)"
-//                content = content + str
-//            }else{
-//                let str = "[\(item.type)]\(item.desc)"
-//                content = content + str
-//            }
-//        }
-//        self.updateContet.text = content
-//        self.updateTitle.text = "v\(data.versionCode)"
-//        self.updateTime.text = data.updateTime
-//    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

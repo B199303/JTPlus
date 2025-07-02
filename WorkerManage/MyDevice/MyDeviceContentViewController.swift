@@ -39,6 +39,7 @@ class MyDeviceContentViewController: UIViewController {
     }()
     
     var onPush:((Int) -> ())?
+    var onRecord:(() -> ())?
     
     var projectId = 0
     
@@ -64,12 +65,24 @@ class MyDeviceContentViewController: UIViewController {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
+        collectionView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
+            guard let `self` = self else {return}
+            self.viewModel.getDeviceList(projectId: projectId)
+            self.viewModel.getProductMetrics(projectId: projectId)
+        })
+        
         subscribe(disposeBag, self.viewModel.deviceListDriver){[weak self] data in
             self?.collectionView.reloadData()
         }
         
         subscribe(disposeBag, self.viewModel.deviceMetricsDriver){[weak self] data in
             self?.collectionView.reloadData()
+        }
+        
+        subscribe(disposeBag, viewModel.endRefreshDriver) { [weak self] _ in
+            self?.collectionView.mj_header?.endRefreshing(completionBlock: {
+                self?.collectionView.reloadData()
+            })
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("reloadDeviceList"), object: nil)
@@ -103,7 +116,8 @@ extension MyDeviceContentViewController: UICollectionViewDelegate, UICollectionV
             return CGSize.init(width: CGFloat.screenWidth, height: 105*CGFloat.widthSize())
         }else{
             let width = (CGFloat.screenWidth - 60*CGFloat.widthSize())/2
-            return CGSize.init(width: width, height: width)
+            let height = width*2/3 + 45*CGFloat.widthSize()
+            return CGSize.init(width: width, height: height)
         }
     }
     
@@ -121,13 +135,13 @@ extension MyDeviceContentViewController: UICollectionViewDelegate, UICollectionV
             if let data = self.viewModel.deviceMetricsRelay.value{
                 cell.bind(data: data)
             }
+            cell.onTouch = {[weak self] in
+                self?.onRecord?()
+            }
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contentCellID, for: indexPath) as! MyDeviceContentCell
             cell.bind(data: self.viewModel.deviceListRelay.value[indexPath.row])
-            cell.onAlarm = {[weak self] in
-                
-            }
             return cell
         }
     }

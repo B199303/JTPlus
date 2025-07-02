@@ -13,22 +13,12 @@ import RxSwift
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    
-    let disposeBag = DisposeBag()
-    
-    var alertList:[AlarmAlertView] = []
-//    let mqtt = CocoaMQTT5(clientID: "CocoaMQTT5-" + String(ProcessInfo().processIdentifier), host: "192.168.172.228", port: 1883)
-    var dataManager:SocketManager? = nil
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         let windowScene = scene as? UIWindowScene
         self.window = UIWindow.init(windowScene: windowScene!)
         self.window?.frame = UIScreen.main.bounds
-//        window?.rootViewController = WelcomeScreenViewController()
-//        self.window?.rootViewController = LoginViewController()
-        
-//        self.window?.rootViewController = LaunchRouter.module()
         if let data = UserDefaults.standard.string(forKey: "token")  {
             if data != ""{
                 self.window?.rootViewController = LaunchRouter.module()
@@ -40,43 +30,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         self.window?.makeKeyAndVisible()
-        
-//        mqttSetUp()
-        let dataManager = SocketManager.init()
-        self.dataManager = dataManager
-        
-        
-        
-        if let dataManager = self.dataManager{
-            subscribe(disposeBag, dataManager.tempDataDriver){ [weak self] data in
-                if data.count > 0{
-                    self?.messageAlert(data: data)
-                }
-            }
-        }
+
     }
     
-    func messageAlert(data:[SocketMessageData]){
-        let alert = SocketMessageAlertView()
-        if data.count > 1 {
-            alert.sureLabel.text = "前往通知页查看详情"
-            alert.contentLabel.text = "有多台设备故障告警，请及时处理。"
-        }else if data.count == 1{
-            alert.sureLabel.text = "现在处理"
-            alert.contentLabel.text = data[0].message
-        }
-        alert.onTouch = {[weak self] index in
-            guard let `self` = self else {return}
-            self.dataManager?.tempDataRelay.accept([])
-            if index == 1{
-                NotificationCenter.default.post(name: Notification.Name("notice"),
-                                                object: nil,
-                                                userInfo: ["data": data])
-            }
-            
-        }
-        alert.show()
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

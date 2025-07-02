@@ -16,6 +16,9 @@ class MyDeviceContentViewModel: NSObject {
     let deviceListRelay = BehaviorRelay<[DeviceListData]>(value: [])
     let deviceMetricsRelay = BehaviorRelay<DeviceMetricsData?>(value: nil)
     
+    var data:[DeviceListData] = []
+    private let endRefreshRelay = BehaviorRelay<Bool>(value: false)
+    
     override init() {
         super.init()
     }
@@ -23,6 +26,7 @@ class MyDeviceContentViewModel: NSObject {
     func getDeviceList(projectId:Int){
         dataProvider.getDeviceList(productId: projectId).subscribe(onSuccess: {[weak self] data in
             if data.code == 20000{
+                self?.endRefreshRelay.accept(true)
                 self?.deviceListRelay.accept(data.data)
             }
         }, onFailure: { err in
@@ -49,5 +53,9 @@ extension MyDeviceContentViewModel {
     
     var deviceMetricsDriver: Driver<DeviceMetricsData?>{
         deviceMetricsRelay.asDriver()
+    }
+    
+    var endRefreshDriver: Driver<Bool> {
+        endRefreshRelay.asDriver()
     }
 }

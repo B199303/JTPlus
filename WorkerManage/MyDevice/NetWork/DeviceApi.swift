@@ -20,7 +20,9 @@ enum DeviceApi{
     case changeDeviceMessage(deviceId:Int, deviceName:String, deviceLocation:String)
     case unBindDevice(deviceId:Int)
     case bindDevice(deviceIdentify:String, productIdentify:String, qrCodeKey:String)
-    case alarmList(limit:Int, page:Int, startTime:String? = nil, endTime:String? = nil)
+    case lastAlarmList
+    case alarmList(deviceId:Int, limit:Int, page:Int, startTime:String? = nil, endTime:String? = nil, status:Int? = nil)
+    case getDeviceMetricsList(deviceId:Int? = nil, productId:Int? = nil, startTime:String? = nil, endTime:String? = nil)
 }
 
 extension DeviceApi:TargetType{
@@ -50,12 +52,16 @@ extension DeviceApi:TargetType{
             return "business/device/bind"
         case .alarmList:
             return "business/deviceAlarm/list"
+        case .lastAlarmList:
+            return "business/deviceAlarm/latestAlarm"
+        case .getDeviceMetricsList:
+            return "business/deviceMetrics/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList:
+        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList, .getDeviceMetricsList, .lastAlarmList:
             return .post
         }
     }
@@ -87,8 +93,8 @@ extension DeviceApi:TargetType{
             return ["deviceId" : deviceId]
         case let .bindDevice(deviceIdentify, productIdentify, qrCodeKey):
             return ["deviceIdentify" : deviceIdentify, "productIdentify" : productIdentify, "qrCodeKey" : qrCodeKey]
-        case let .alarmList(limit, page, startTime, endTime):
-            var params: [String: Any] = ["limit" : limit, "page" : page]
+        case let .alarmList(deviceId, limit, page, startTime, endTime, status):
+            var params: [String: Any] = ["deviceId" : deviceId, "limit" : limit, "page" : page]
             let sTime = " 00:00:00"
             let eTime = " 23:59:50"
             if endTime != nil && endTime != "" {
@@ -97,20 +103,42 @@ extension DeviceApi:TargetType{
             if startTime != nil && startTime != "" {
                 params["startTime"] = (startTime ?? "") + sTime
             }
+            if status != nil{
+                params["status"] = status
+            }
             return params
+        case let .getDeviceMetricsList(deviceId, productId, startTime, endTime):
+            var params: [String: Any] = [ : ]
+            let sTime = " 00:00:00"
+            let eTime = " 23:59:50"
+            if endTime != nil && endTime != "" {
+                params["endTime"] = (endTime ?? "") + eTime
+            }
+            if startTime != nil && startTime != "" {
+                params["startTime"] = (startTime ?? "") + sTime
+            }
+            if deviceId != nil{
+                params["deviceId"] = deviceId
+            }
+            if productId != nil{
+                params["productId"] = productId
+            }
+            return params
+        case .lastAlarmList:
+            return [:]
         }
     }
     
     var task: Moya.Task {
         switch self{
-        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList:
+        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList, .getDeviceMetricsList, .lastAlarmList:
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList:
+        case .getDeviceList, .getProductListByUser, .getDeviceMetrics, .getProductMetrics, .getDeviceDetail, .getDeviceAlarmStatic, .changeDeviceMessage, .unBindDevice, .bindDevice, .alarmList, .getDeviceMetricsList, .lastAlarmList:
             return Network.sharedHeaders()
         default:
             return [:]

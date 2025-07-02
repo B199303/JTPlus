@@ -28,7 +28,7 @@ class MyDeviceNoticeContentCell: UICollectionViewCell {
         if let url = URL(string: data.deviceCoverImage){
             self.contentIma.kf.setImage(with: url)
         }
-        self.descLabel.text = "\(data.deviceLocation) | \(data.deviceName)"
+        self.descLabel.text = "\(data.deviceLocation) | \(data.showName)"
         self.timeLabel.text = data.alarmTime
     }
     

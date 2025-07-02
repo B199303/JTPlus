@@ -144,6 +144,18 @@ class MyDeviceDetailViewController: CustomNavigationBarController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
+        numCell.onTouch = { [weak self] in
+            guard let `self` = self else {return}
+            self.navigationController?.pushViewController(MyDeviceProductRecordViewController(deviceId: self.deviceId))
+        }
+        
+        headCell.onTouch = { [weak self] in
+            guard let `self` = self, let data = self.viewModel.deviceDetailRelay.value else {return}
+            let vc = MyDeviceAlarmListViewController(deviceId: self.deviceId)
+            vc.title = data.showName
+            self.navigationController?.pushViewController(vc)
+        }
+        
         view.addSubview(slideView)
         slideView.snp.makeConstraints{
             $0.trailing.equalToSuperview().offset(196*CGFloat.widthSize())

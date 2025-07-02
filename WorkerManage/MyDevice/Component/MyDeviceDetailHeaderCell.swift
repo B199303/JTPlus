@@ -9,11 +9,15 @@ import UIKit
 
 class MyDeviceDetailHeaderCell: UITableViewCell {
     let bigPic = UIImageView()
-    let warnBg = UIView()
+    let warnBg = UIButton()
     let leftIma = UIImageView()
     let titleLabel = UILabel()
     let timeLabel = UILabel()
     let descLabel = UILabel()
+    
+    let imaHeight:CGFloat = CGFloat.screenWidth*100/154
+    
+    var onTouch:(() -> ())?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,7 +31,7 @@ class MyDeviceDetailHeaderCell: UITableViewCell {
             self.warnBg.isHidden = true
             bigPic.snp.remakeConstraints{
                 $0.leading.trailing.top.equalToSuperview()
-                $0.height.equalTo(152*CGFloat.widthSize())
+                $0.height.equalTo(imaHeight)
                 $0.bottom.equalToSuperview()
             }
         }else{
@@ -36,7 +40,7 @@ class MyDeviceDetailHeaderCell: UITableViewCell {
             self.descLabel.text = detail.recentlyAlarmInfo?.alarmContent
             bigPic.snp.remakeConstraints{
                 $0.leading.trailing.top.equalToSuperview()
-                $0.height.equalTo(152*CGFloat.widthSize())
+                $0.height.equalTo(imaHeight)
                 $0.bottom.equalToSuperview().offset(-92*CGFloat.widthSize())
             }
         }
@@ -46,6 +50,10 @@ class MyDeviceDetailHeaderCell: UITableViewCell {
         }
     }
     
+    @objc func touch(){
+        self.onTouch?()
+    }
+    
     func initUI(){
         
         contentView.addSubview(bigPic)
@@ -53,6 +61,7 @@ class MyDeviceDetailHeaderCell: UITableViewCell {
         warnBg.cornerRadius = 8*CGFloat.widthSize()
         warnBg.backgroundColor = .whiteColor
         warnBg.isHidden = true
+        warnBg.addTarget(self, action: #selector(touch), for: .touchUpInside)
         contentView.addSubview(warnBg)
         
         leftIma.image = UIImage(named: "mydevice_bug")
@@ -77,10 +86,9 @@ class MyDeviceDetailHeaderCell: UITableViewCell {
         descLabel.text = ""
         warnBg.addSubview(descLabel)
         
-        
         bigPic.snp.makeConstraints{
             $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(152*CGFloat.widthSize())
+            $0.height.equalTo(imaHeight)
             $0.bottom.equalToSuperview().offset(-92*CGFloat.widthSize())
         }
         

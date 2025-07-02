@@ -71,6 +71,7 @@ protocol IAppConfigProvider {
     var isUAT: Bool { get }
     var version: String { get }
     var shareURL: String { get }
+    var wsURL: String { get }
 }
 
 

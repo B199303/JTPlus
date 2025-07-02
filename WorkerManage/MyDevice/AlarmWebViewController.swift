@@ -6,24 +6,58 @@
 //
 
 import UIKit
+import WebKit
 
-class AlarmWebViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class AlarmWebViewController: CustomNavigationBarController {
+    var webView: WKWebView!
+    var url:URL?
+    
+    init(url:URL? = nil) {
+        super.init()
+        self.url = url
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        webView = WKWebView()
+        view.addSubview(webView)
+        webView.snp.makeConstraints{
+            $0.leading.trailing.bottom.equalToSuperview().inset(10)
+            $0.top.equalTo(navBar.snp.bottom).offset(10)
+        }
+        
+        if let url = url{
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+    
+    func openWith(url:URL) {
+        
+        let docVC = UIDocumentInteractionController(url: url)
+        docVC.delegate = self
+        if !docVC.presentPreview(animated: true){
+            docVC.presentOptionsMenu(from: CGRect(x: 0, y: 300, width: CGFloat.screenWidth, height: 300), in: self.view, animated: true)
+        }
 
+    }
+}
+
+extension AlarmWebViewController: UIDocumentInteractionControllerDelegate, UINavigationControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
+    func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
+        return CGRect(x: 0, y: 100, width: CGFloat.screenWidth, height: CGFloat.screenHeight)
+    }
+    
+    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+        return self.view
+    }
+    
 }

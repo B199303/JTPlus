@@ -18,15 +18,19 @@ class AppConfigProvider: IAppConfigProvider {
     
     var domain: String {
         let dev = "http://192.168.172.180:9527"
-//        let dev = "http://192.168.31.5:7281"
-        let uat = "http://192.168.172.180:9527"
+        let uat = "http://183.62.149.43:9527"
+        return isUAT ? uat : dev
+    }
+    
+    var wsURL: String {
+        let dev = "ws://192.168.172.180:9527"
+        let uat = "ws://183.62.149.43:9527"
         return isUAT ? uat : dev
     }
     
     var baseURL: String {
         let dev = "http://192.168.172.180:9527/jt-home-api"
-//        let dev = "http://192.168.31.5:7281/thermal-api"
-        let uat = "http://192.168.172.180:9527/jt-home-api"
+        let uat = "http://183.62.149.43:9527/jt-home-api"
         return isUAT ? uat : dev
     }
     
@@ -36,7 +40,7 @@ class AppConfigProvider: IAppConfigProvider {
         return isUAT ? uat : dev
     }
     
-    let isUAT: Bool = false
+    let isUAT: Bool = true
     
     var version:String = "1.0.0"
     

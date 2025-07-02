@@ -15,6 +15,8 @@ class MyDeviceDetailNumCell: UITableViewCell {
     let pageControl = JXPageControlEllipse()
     let contentWidth = CGFloat.screenWidth - 40*CGFloat.widthSize()
     
+    var onTouch:(() -> ())?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -29,6 +31,10 @@ class MyDeviceDetailNumCell: UITableViewCell {
         if let week = data.curWeekMetrics{
             self.weekView.bind(data: week)
         }
+    }
+    
+    @objc func touch(){
+        self.onTouch?()
     }
     
     func initUI(){
@@ -54,12 +60,14 @@ class MyDeviceDetailNumCell: UITableViewCell {
         let bgView = UIView()
         scrollView.addSubview(bgView)
         bgView.snp.makeConstraints{
-            $0.leading.top.bottom.equalToSuperview()
+            $0.leading.top.equalToSuperview()
             $0.width.equalTo(2*contentWidth)
+            $0.height.equalTo(105*CGFloat.widthSize())
             $0.trailing.equalToSuperview()
         }
        
         todayView.numTitle.text = "当日"
+        todayView.addTarget(self, action: #selector(touch), for: .touchUpInside)
         bgView.addSubview(todayView)
         todayView.snp.makeConstraints{
             $0.leading.top.bottom.equalToSuperview()
@@ -67,6 +75,7 @@ class MyDeviceDetailNumCell: UITableViewCell {
         }
 
         weekView.numTitle.text = "本周"
+        weekView.addTarget(self, action: #selector(touch), for: .touchUpInside)
         bgView.addSubview(weekView)
         weekView.snp.makeConstraints{
             $0.leading.equalTo(todayView.snp.trailing)
@@ -110,7 +119,6 @@ extension MyDeviceDetailNumCell: UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let progress = scrollView.contentOffset.x / contentWidth
-        let currentPage = Int(round(progress))
         self.pageControl.progress = progress
     }
 }

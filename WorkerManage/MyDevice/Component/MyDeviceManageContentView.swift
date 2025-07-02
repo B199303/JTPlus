@@ -11,6 +11,7 @@ class MyDeviceManageContentView: UIView {
     let title = UILabel()
     let inputBg = UIView()
     let inputTextField = UITextField()
+    var limitNum:Int = 15
 
     init(){
         super.init(frame: .zero)
@@ -70,4 +71,12 @@ extension MyDeviceManageContentView: UITextFieldDelegate{
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return true }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            return updatedText.count <= limitNum
+        }
 }

@@ -38,7 +38,7 @@ class MyDeviceDetailShowView: UIView {
     
     func bind(detail:DeviceDetailData){
         localView.rightContent.text = detail.deviceLocation
-        nameView.rightContent.text = detail.deviceName
+        nameView.rightContent.text = detail.showName
         codeView.rightContent.text = detail.deviceEncoding
         typeNumView.rightContent.text = detail.deviceModel
         dateView.rightContent.text = detail.manufactureDate

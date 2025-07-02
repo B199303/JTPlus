@@ -39,6 +39,11 @@ class MineViewControllor: CustomNavigationBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.getUser()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navBar.isHidden = true
@@ -46,6 +51,10 @@ class MineViewControllor: CustomNavigationBarController {
         setupViews()
         initData()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name("reloadUserInfo"), object: nil)
+        
+        subscribe(disposeBag, self.viewModel.userInfoDriver){ [weak self] data in
+            self?.initData()
+        }
     }
     
     @objc func reloadData(){

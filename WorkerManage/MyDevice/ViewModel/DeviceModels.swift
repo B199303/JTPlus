@@ -32,13 +32,16 @@ public class DeviceListData: Mappable {
     var productId:Int = 0
     var identify:String = ""
     var deviceCoverImage:String = ""
-    var name:String = ""
+    var name:String? = nil
     var description:String = ""
     var online:Bool = false
     var deviceEncoding:String = ""
-    var deviceLocation:String = ""
+    var deviceLocation:String? = nil
     var status:Int = 0
     var runDuration:Int = 0
+    
+    var showName = "未命名"
+    var showLocation = "空"
     
     required public init?(map: Map) { }
     
@@ -54,6 +57,14 @@ public class DeviceListData: Mappable {
         deviceLocation <- map["deviceLocation"]
         status <- map["status"]
         runDuration <- map["runDuration"]
+        
+        if let n = name{
+            showName = n
+        }
+        
+        if let l = deviceLocation{
+            showLocation = l
+        }
     }
 }
 
@@ -119,6 +130,8 @@ public class DeviceMetricsContentData: Mappable {
     var nitrogenConsumption:Float = 0
     var powerConsumption:Float = 0
     var runDuration:Int = 0
+    var day: String = ""
+    var showDay: String = ""
     
     required public init?(map: Map) { }
     
@@ -127,6 +140,16 @@ public class DeviceMetricsContentData: Mappable {
         nitrogenConsumption <- map["nitrogenConsumption"]
         powerConsumption <- map["powerConsumption"]
         runDuration <- map["runDuration"]
+        day <- map["day"]
+        
+        self.change(day: day)
+    }
+    
+    func change(day:String){
+        let dayArr = day.components(separatedBy: " ")
+        if dayArr.count == 2{
+            self.showDay = dayArr[0]
+        }
     }
 }
 
@@ -150,12 +173,13 @@ public class DeviceDetailData: Mappable {
     var deviceId: Int = 0
     var totalAlarmCount:Int = 0
     var deviceLocation:String = ""
-    var deviceName:String = ""
+    var deviceName:String? = nil
     var deviceCoverImage:String = ""
     var deviceEncoding:String = ""
     var deviceModel:String = ""
     var manufactureDate:String = ""
     var recentlyAlarmInfo: DeviceDetailDataInfo?
+    var showName:String = "未命名"
     
     required public init?(map: Map) { }
     
@@ -169,6 +193,10 @@ public class DeviceDetailData: Mappable {
         deviceModel <- map["deviceModel"]
         manufactureDate <- map["manufactureDate"]
         recentlyAlarmInfo <- map["recentlyAlarmInfo"]
+        
+        if deviceName != nil || deviceName != ""{
+            showName = deviceName ?? "未命名"
+        }
     }
 }
 
@@ -256,10 +284,14 @@ public class DeviceAlarmList: SourceData {
 public class DeviceAlarmListData: Mappable {
     var deviceId:Int = 0
     var deviceCoverImage:String = ""
-    var deviceName:String = ""
+    var deviceName:String? = nil
     var deviceLocation:String = ""
     var alarmTime:String = ""
     var alarmContent:String = ""
+    var alarmHandlingUrl:String? = nil
+    var customerServiceNumber = ""
+    
+    var showName = ""
     
     required public init?(map: Map) { }
     
@@ -270,6 +302,12 @@ public class DeviceAlarmListData: Mappable {
         deviceLocation <- map["deviceLocation"]
         alarmTime <- map["alarmTime"]
         alarmContent <- map["alarmContent"]
+        alarmHandlingUrl <- map["alarmHandlingUrl"]
+        customerServiceNumber <- map["customerServiceNumber"]
+        
+        if let name = deviceName{
+            showName = name
+        }
     }
 }
 
@@ -311,3 +349,22 @@ public class SocketMessageData: Mappable {
         message <- map["message"]
     }
 }
+
+
+public class DeviceMetricsList: SourceData {
+    var data: [DeviceMetricsContentData] = []
+    
+    required public init?(map: Map) { super.init(map: map)}
+    
+    public override func mapping(map: Map) {
+        data <- map["data"]
+        msg <- map["msg"]
+        code <- map["code"]
+        total <- map["total"]
+        
+        self.checkCode(code: code)
+    }
+}
+
+
+

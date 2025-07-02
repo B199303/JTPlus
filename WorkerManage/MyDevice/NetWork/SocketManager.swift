@@ -28,7 +28,7 @@ class SocketManager {
         let timer = Timer.scheduledTimer(withTimeInterval: 50.0, repeats: true) { [weak self] timer in
             guard let `self` = self else {return}
             print("这个操作每50秒执行一次")
-            socket?.write(string: "PING") {
+            self.socket?.write(string: "PING") {
                 print("Message sent")
             }
         }
@@ -36,7 +36,7 @@ class SocketManager {
     
     func connect() {
         if let token = UserDefaults.standard.string(forKey: "token")  {
-            var request = URLRequest(url: URL(string: "ws://192.168.172.180:7253/jt/im?token=\(token)")!)
+            var request = URLRequest(url: URL(string: "\(App.shared.appConfigProvider.wsURL)/jt/im?token=\(token)")!)
             request.timeoutInterval = 5
             socket = WebSocket(request: request)
             socket?.delegate = self
@@ -85,7 +85,7 @@ extension SocketManager:WebSocketDelegate{
         }
     }
     
-//"{\"alarmTime\":\"2025-06-16 09:34:49\",\"deviceEncoding\":\"ld1JRu8Awa12311\",\"deviceId\":2,\"message\":\"3通道温度过高12\"}"
+    
     func resolve(text: String) {
         if let jsonData: Data = text.data(using: .utf8){
             if let dict = try? JSONSerialization.jsonObject(with: jsonData,

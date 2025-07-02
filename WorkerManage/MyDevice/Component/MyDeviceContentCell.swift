@@ -13,8 +13,11 @@ class MyDeviceContentCell: UICollectionViewCell {
     let numLabel = UILabel()
     let wifiIma = UIImageView()
     let descLabel = UILabel()
+    let statusLabel = UILabel()
     let alarmBtn = ExpandedTouchAreaButton()
     let alarmIma = UIImageView()
+    
+    let cellWidth:CGFloat = (CGFloat.screenWidth - 40*CGFloat.widthSize())/2
     
     var onAlarm:(() -> ())?
     
@@ -33,20 +36,11 @@ class MyDeviceContentCell: UICollectionViewCell {
             let url = URL(string: data.deviceCoverImage)
             self.contentIma.kf.setImage(with: url)
         }
-        self.numLabel.text = data.deviceEncoding
-        let statusText = data.status == 1 ? "正常" : "告警"
+        self.numLabel.text = data.showName
+        let statusText = data.status == 1 ? "｜正常" : "｜告警"
+        self.statusLabel.text = statusText
         alarmBtn.isHidden = data.status == 1
-        var timeText = ""
-        if data.runDuration == 0{
-            self.descLabel.text = "\(data.deviceLocation)| 未启动"
-        }else{
-            if data.runDuration > 60{
-                timeText = "\(data.runDuration/60)h\(data.runDuration%60)m"
-            }else{
-                timeText = "\(data.runDuration)m"
-            }
-            self.descLabel.text = "\(data.deviceLocation)|\(statusText) \(timeText)"
-        }
+        self.descLabel.text = "\(data.showLocation) "
         
         if data.online{
             wifiIma.image = UIImage(named: "mydevice_wifi")
@@ -65,6 +59,7 @@ class MyDeviceContentCell: UICollectionViewCell {
         bgView.addSubview(numLabel)
         bgView.addSubview(wifiIma)
         bgView.addSubview(descLabel)
+        bgView.addSubview(statusLabel)
         bgView.addSubview(alarmBtn)
         alarmBtn.addSubview(alarmIma)
         
@@ -76,13 +71,15 @@ class MyDeviceContentCell: UICollectionViewCell {
         numLabel.font = .textFont_12_medium
         numLabel.text = "机身编号"
         
-//        wifiIma.image = CommonIconFont.iconfontToImage(iconText: IconFontName.wifi.rawValue, fontSize: 20, fontColor: .blueColor4B).image
-        wifiIma.image = UIImage(named: "mydevice_wifi")
-        
         descLabel.textAlignment = .left
         descLabel.textColor = .grayColor6D
         descLabel.font = .textFont_10_medium
         descLabel.text = "1号产线 | 正常 工作4h32m"
+        
+        statusLabel.text = "正常"
+        statusLabel.textAlignment = .left
+        statusLabel.textColor = .grayColor6D
+        statusLabel.font = .textFont_10_medium
         
         alarmBtn.backgroundColor = .redColor40
         alarmBtn.cornerRadius = 8*CGFloat.widthSize()
@@ -100,8 +97,9 @@ class MyDeviceContentCell: UICollectionViewCell {
         }
         
         numLabel.snp.makeConstraints{
-            $0.top.equalTo(contentIma.snp.bottom)
+            $0.bottom.equalToSuperview().offset(-33*CGFloat.widthSize())
             $0.leading.equalToSuperview().offset(10*CGFloat.widthSize())
+            $0.width.lessThanOrEqualTo(cellWidth - 20*CGFloat.widthSize() - 28*CGFloat.widthSize())
         }
         
         wifiIma.snp.makeConstraints{
@@ -113,7 +111,13 @@ class MyDeviceContentCell: UICollectionViewCell {
         descLabel.snp.makeConstraints{
             $0.top.equalTo(numLabel.snp.bottom).offset(4*CGFloat.widthSize())
             $0.leading.equalTo(numLabel)
-            $0.trailing.equalToSuperview().offset(-10*CGFloat.widthSize())
+            $0.width.lessThanOrEqualTo(cellWidth - 20*CGFloat.widthSize() - 38*CGFloat.widthSize())
+        }
+        
+        statusLabel.snp.makeConstraints{
+            $0.leading.equalTo(descLabel.snp.trailing)
+            $0.centerY.equalTo(descLabel)
+            $0.width.equalTo(40*CGFloat.widthSize())
         }
         
         alarmBtn.snp.makeConstraints{

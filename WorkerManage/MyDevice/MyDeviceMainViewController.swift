@@ -104,7 +104,6 @@ class MyDeviceMainViewController: CustomNavigationBarController {
         }
         
         NotificationCenter.default.rx.notification(Notification.Name("notice")).subscribe(onNext: { [weak self] notification in
-            guard let `self` = self else { return }
             if let list = notification.userInfo?["data"] as? [SocketMessageData] {
                 if list.count > 1{
                     let vc = MyDeviceNoticeViewController()
@@ -115,12 +114,8 @@ class MyDeviceMainViewController: CustomNavigationBarController {
                 }
             }
         }).disposed(by: disposeBag)
-//        NotificationCenter.default.addObserver(self, selector: #selector(pushTo), name: Notification.Name("notice"), object: nil)
+        
     }
-    
-//    @objc func pushTo(){
-//        UIViewController.getTopViewControllerInAlert()?.navigationController?.pushViewController(MyDeviceNoticeViewController())
-//    }
     
     @objc func reloadData(){
         self.viewModel.getProductList(userId: self.userId)
@@ -144,7 +139,6 @@ class MyDeviceMainViewController: CustomNavigationBarController {
     
     func initSegmentView(){
         dataSource.isItemSpacingAverageEnabled = false
-//        dataSource.titles = ["回流焊", "波峰焊", "垂直固化炉", "迷你选择焊", "AOI", "垂直固化炉", "迷你选择焊"]
         dataSource.titles = self.viewModel.productListRelay.value.map{$0.productName}
         dataSource.titleSelectedFont = .textFont_16_medium
         dataSource.titleNormalFont = .textFont_16_medium
@@ -156,24 +150,12 @@ class MyDeviceMainViewController: CustomNavigationBarController {
         segmentedView.delegate = self
         segmentedView.backgroundColor = .clear
         
-        
-//        let indicator = JXSegmentedIndicatorLineView()
-//        indicator.isIndicatorConvertToItemFrameEnabled = true
-//        indicator.indicatorCornerRadius = 0
-//        indicator.indicatorColor = .mainRedColor
-//        indicator.indicatorHeight = 2*CommonNum().widthSize()
-//        indicator.indicatorWidth = 14*CommonNum().widthSize()
-//        self.segmentedView.indicators = [indicator]
-        
         view.addSubview(segmentedView)
         
         listContainerView.scrollView.isScrollEnabled = false
         segmentedView.listContainer = listContainerView
         
         view.addSubview(listContainerView)
-        
-//        self.segmentedView.isHidden = true
-//        self.listContainerView.isHidden = true
     }
     
     func initGradient(){
@@ -235,14 +217,6 @@ class MyDeviceMainViewController: CustomNavigationBarController {
             if let item = self.scanData{
                 self.viewModel.bindDevice(productIdentify: item.productIdentify, deviceIdentify: item.deviceIdentify, qrCodeKey: alert.inputTextField.text ?? "")
             }
-//            let addAlert = FindProductAlertView()
-//            addAlert.onTouch = {[weak self] in
-//                guard let `self` = self else {return}
-//                self.noDeviceView.isHidden = true
-//                self.segmentedView.isHidden = false
-//                self.listContainerView.isHidden = false
-//            }
-//            addAlert.show()
         }
         alert.show()
     }
@@ -300,7 +274,6 @@ class MyDeviceMainViewController: CustomNavigationBarController {
             let vc = MyDeviceNoticeViewController()
             self.navigationController?.pushViewController(vc)
         }else if button.tag == 2{
-            let vc = ScanViewController()
             self.navigationController?.pushViewController(ScanViewController())
         }
         
@@ -322,14 +295,12 @@ extension MyDeviceMainViewController: JXSegmentedListContainerViewDataSource {
         vc.onPush = { [weak self] deviceId in
             self?.navigationController?.pushViewController(MyDeviceDetailViewController(deviceId: deviceId))
         }
-        return vc
-        if index == 0 {
-            
-        }else if index == 1{
-            
-        } else{
-            
+        vc.onRecord = { [weak self] in
+            guard let `self` = self else {return}
+            let item = self.viewModel.productListRelay.value[index]
+            self.navigationController?.pushViewController(MyDeviceProductRecordViewController(productId: item.productId))
         }
+        return vc
     }
 }
 

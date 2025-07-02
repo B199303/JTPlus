@@ -38,6 +38,9 @@ class LoginViewController: KeyboardManagerViewController {
                     self?.hud.dismiss(animated: true)
                     self?.exchangeTabar()
 //                    XGPush.defaultManager().xgApplicationBadgeNumber = 0
+                    NotificationCenter.default.post(name: Notification.Name("socketConnect"),
+                                                    object: nil,
+                                                    userInfo: nil)
                 }
             }
         }

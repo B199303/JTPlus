@@ -12,7 +12,6 @@ class MyDeviceManageViewController: CustomNavigationBarController {
     let nameView = MyDeviceManageContentView()
     let localView = MyDeviceManageContentView()
     
-//    let cancelBtn = UIButton()
     let saveBtn = UIButton()
     
     var detailData:DeviceDetailData?
@@ -104,11 +103,13 @@ class MyDeviceManageViewController: CustomNavigationBarController {
         nameView.inputTextField.placeholder = "请输入设备名称"
         nameView.inputTextField.text = self.detailData?.deviceName
         nameView.title.text = "设备名称"
+        nameView.limitNum = 15
         view.addSubview(nameView)
         
         localView.inputTextField.placeholder = "请输入设备位置"
         localView.title.text = "设备位置"
         localView.inputTextField.text = self.detailData?.deviceLocation
+        localView.limitNum = 25
         view.addSubview(localView)
         
         nameView.snp.makeConstraints{
@@ -121,16 +122,6 @@ class MyDeviceManageViewController: CustomNavigationBarController {
             $0.leading.trailing.equalToSuperview()
         }
         
-//        cancelBtn.borderColor = .grayColorD0
-//        cancelBtn.borderWidth = CGFloat.widthSize()
-//        cancelBtn.setTitle("取消", for: .normal)
-//        cancelBtn.titleLabel?.font = .textFont_16_bold
-//        cancelBtn.cornerRadius = 8*CGFloat.widthSize()
-//        cancelBtn.setTitleColor(.blackColor22, for: .normal)
-//        cancelBtn.tag = 1
-//        cancelBtn.addTarget(self, action: #selector(touch(button:)), for: .touchUpInside)
-//        view.addSubview(cancelBtn)
-        
         saveBtn.setTitle("保存", for: .normal)
         saveBtn.titleLabel?.font = .textFont_16_bold
         saveBtn.cornerRadius = 8*CGFloat.widthSize()
@@ -140,17 +131,9 @@ class MyDeviceManageViewController: CustomNavigationBarController {
         saveBtn.addTarget(self, action: #selector(touch(button:)), for: .touchUpInside)
         view.addSubview(saveBtn)
         
-//        cancelBtn.snp.makeConstraints{
-//            $0.leading.equalToSuperview().offset(20*CGFloat.widthSize())
-//            $0.width.equalTo(136*CGFloat.widthSize())
-//            $0.height.equalTo(48*CGFloat.widthSize())
-//            $0.bottom.equalToSuperview().offset(-100*CGFloat.widthSize())
-//        }
-        
         saveBtn.snp.makeConstraints{
             $0.trailing.equalToSuperview().offset(-20*CGFloat.widthSize())
             $0.leading.equalToSuperview().offset(20*CGFloat.widthSize())
-//            $0.width.equalTo(136*CGFloat.widthSize())
             $0.height.equalTo(48*CGFloat.widthSize())
             $0.bottom.equalToSuperview().offset(-100*CGFloat.widthSize())
         }

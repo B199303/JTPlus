@@ -36,7 +36,6 @@ class CircularProgressView: UIView {
         let endAngle = startAngle + 2 * CGFloat.pi // 结束角度，形成一个完整的圆
         
         let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
-//        circularPath.lineCapStyle = .round
         progressLayer = CAShapeLayer()
         progressLayer.path = circularPath.cgPath
         progressLayer.strokeColor = lineColor.cgColor // 进度颜色

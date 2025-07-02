@@ -333,6 +333,22 @@ class DateTool: NSObject {
         }
         return daysArr
     }
+    
+    public static func getWeekRange() -> (start: String, end: String)? {
+        var calendar = Calendar.current
+        calendar.firstWeekday = 2 // 设置一周的第一天为周一
+        
+        // 获取当前日期
+        let today = Date()
+        
+        // 获取当前周的开始日期（周一）
+        guard let firstDayOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else { return nil }
+        
+        // 获取当前周的结束日期（周日）
+        guard let endOfWeek = calendar.date(byAdding: .day, value: 6, to: firstDayOfWeek) else { return nil }
+        
+        return (start: self.stringFromDate(timeFormat: .YYYYMMDD, date: firstDayOfWeek as Date), end: self.stringFromDate(timeFormat: .YYYYMMDD, date: endOfWeek as Date))
+    }
 }
 
 

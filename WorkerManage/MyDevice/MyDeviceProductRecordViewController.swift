@@ -1,97 +1,79 @@
 //
-//  MessageRecordListViewController.swift
+//  MyDeviceProductRecordViewController.swift
 //  WorkerManage
 //
-//  Created by BL L on 2023/12/21.
+//  Created by BL L on 2025/6/24.
 //
 
 import UIKit
 import RxSwift
 
-class MessageRecordListViewController: CustomNavigationBarController {
-    let topView = MessageTopView()
+class MyDeviceProductRecordViewController: CustomNavigationBarController {
     let tableView = UITableView(frame: .zero, style: .plain)
-    let viewModel = MessageViewModel()
-    let disposeBag = DisposeBag()
     
     private var currentDateCom: DateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
     let dataPicker = RecordTimeFilterViewController()
-
+    let viewModel = MyDeviceProductRecordViewModel()
+    
+    let disposeBag = DisposeBag()
+    
+    init(deviceId: Int? = nil, productId: Int? = nil){
+        super.init()
+        self.viewModel.deviceId = deviceId
+        self.viewModel.productId = productId
+        let range = DateTool.getWeekRange()
+        self.viewModel.startTime = range?.0
+        self.viewModel.endTime = range?.1
+        self.viewModel.getDeviceMetricsList()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getList(loadMore: false)
-        
-        subscribe(disposeBag, self.viewModel.listDriver){[weak self] data in
-            self?.tableView.reloadData()
-        }
-        
-        subscribe(disposeBag, viewModel.endRefreshDriver) { [weak self] _ in
-            self?.tableView.mj_header?.endRefreshing(completionBlock: {
-                self?.tableView.reloadData()
-            })
-        }
-        
-        subscribe(disposeBag, viewModel.noMoreDataDriver) { [weak self] noMoreData in
-            if noMoreData {
-                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
-            } else {
-                self?.tableView.mj_footer?.resetNoMoreData()
-            }
-            self?.tableView.mj_footer?.isHidden = noMoreData
-        }
 
         setUpViews()
+        
+        subscribe(disposeBag, self.viewModel.listDriver){ [weak self] data in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    @objc func rightButtonTouch(){
+        self.selectTime()
     }
     
     func setUpViews(){
-        self.title = "消息"
+        self.title = "产能记录"
         navBar.isHidden = false
-        navBar.bottomLine.isHidden = true
-        navBar.backgroundColor = .clear
-        view.backgroundColor = .blackColor16
+        self.navBar.bottomLine.isHidden = false
+        self.navBar.bottomLine.backgroundColor = .grayColorEF
         
-        topView.filterIma.rx.tap.subscribe(onNext:{ [weak self] in
-            guard let `self` = self else {return}
-            self.selectTime()
-        }).disposed(by: disposeBag)
-        view.addSubview(topView)
-        topView.snp.makeConstraints{
-            $0.top.equalTo(navBar.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(72)
+        self.navBar.rightBtn.isHidden = false
+        let rightIma = UIImageView()
+        rightIma.image = CommonIconFont.iconfontToImage(iconText: IconFontName.history.rawValue, fontSize: 20, fontColor: .blackColor33).image
+        self.navBar.rightBtn.addSubview(rightIma)
+        self.navBar.rightBtn.addTarget(self, action: #selector(rightButtonTouch), for: .touchUpInside)
+        rightIma.snp.makeConstraints{
+            $0.trailing.equalToSuperview().offset(-5*CGFloat.widthSize())
+            $0.centerY.equalTo(self.navBar.backIma)
+            $0.width.height.equalTo(20*CGFloat.widthSize())
         }
         
         view.addSubview(tableView)
-        tableView.registerCell(forClass: MessageRecordListCell.self)
+        tableView.registerCell(forClass: MyDeviceProductRecordCell.self)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .blackColor27
+        tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         tableView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(topView.snp.bottom)
+            $0.top.equalTo(navBar.snp.bottom)
         }
         
-        tableView.mj_header = RefreshHeader(refreshingBlock: { [weak self] in
-            self?.viewModel.getList(loadMore: false)
-        })
-        
-        tableView.mj_footer = RefreshFooter(refreshingBlock: { [weak self] in
-            self?.viewModel.getList(loadMore: true)
-        })
-        
-        self.topView.inputTextField.rx.controlEvent([.editingDidEnd]).asObservable()
-            .subscribe(onNext:{[weak self] in
-                guard let `self` = self else {return}
-                if let text = self.topView.inputTextField.text{
-                    self.viewModel.query = text
-                }else{
-                    self.viewModel.query = nil
-                }
-                self.viewModel.getList(loadMore: false)
-            })
-            .disposed(by: disposeBag)
     }
     
     func selectTime(){
@@ -103,9 +85,13 @@ class MessageRecordListViewController: CustomNavigationBarController {
             currentDateCom = Calendar.current.dateComponents([.year, .month, .day], from: date as Date)
         }
         
+        if let endTime = self.viewModel.endTime{
+            self.dataPicker.topView.rightDate.text = endTime
+            self.dataPicker.rightDate = endTime
+        }
+        
         dataPicker.backDate = { [weak self] date1,date2 in
             guard let `self` = self else {return}
-            self.topView.filterTime.isHidden = false
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "YYYY-MM-dd"
             var dateString1: String = dateFormatter.string(from: date1)
@@ -124,23 +110,20 @@ class MessageRecordListViewController: CustomNavigationBarController {
                     dateString1 = todayStr
                     dateString2 = todayStr
                 }
-                self.topView.filterTime.text = todayStr
             }else{
                 if !compare2{
                     dateString2 = todayStr
                 }
-                self.topView.filterTime.text = "\(dateString1)至\(dateString2)"
             }
             self.dataPicker.setDate(left: dateString1, right: dateString2)
             self.viewModel.startTime = dateString1
             self.viewModel.endTime = dateString2
-            self.viewModel.getList(loadMore: false)
+            self.viewModel.getDeviceMetricsList()
         }
         dataPicker.onClear = { [weak self] in
-            self?.topView.filterTime.isHidden = true
             self?.viewModel.startTime = nil
             self?.viewModel.endTime = nil
-            self?.viewModel.getList(loadMore: false)
+            self?.viewModel.getDeviceMetricsList()
         }
         dataPicker.view.frame = CGRect(x: 0, y: 0, width: CGFloat.screenWidth, height: CGFloat.screenHeight)
         dataPicker.rowarr = [2,(self.currentDateCom.month!) - 1,(self.currentDateCom.day!) - 1]
@@ -154,9 +137,9 @@ class MessageRecordListViewController: CustomNavigationBarController {
     }
 }
 
-extension MessageRecordListViewController:UITableViewDelegate, UITableViewDataSource{
+extension MyDeviceProductRecordViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.alarmList.count
+        return self.viewModel.listRelay.value.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -164,8 +147,9 @@ extension MessageRecordListViewController:UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withClass: MessageRecordListCell.self, for: indexPath)
-        cell.bind(data: self.viewModel.alarmList[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withClass: MyDeviceProductRecordCell.self, for: indexPath)
+        let item = self.viewModel.listRelay.value[indexPath.row]
+        cell.bind(data: item)
         return cell
     }
 }

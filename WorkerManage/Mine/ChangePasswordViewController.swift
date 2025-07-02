@@ -138,14 +138,6 @@ class ChangePasswordViewController: CustomNavigationBarController {
             self.view.makeToast("新密码必须一致", duration: 1.5, position: .center)
         }else{
             self.viewModel.getRsaKey(now: self.nowView.inputTextField.text ?? "", new: self.secPassword.inputTextField.text ?? "")
-//            if self.viewModel.validatePassword(self.firstPassword.inputTextField.text ?? ""){
-//                print("keyi")
-////                self.viewModel.getRsaKey(now: self.nowView.inputTextField.text ?? "", new: self.secPassword.inputTextField.text ?? "")
-//            }else{
-//                self.view.makeToast("新密码不符合规范", duration: 1.5, position: .center)
-//                print("buxing")
-//            }
-            
         }
         
     }

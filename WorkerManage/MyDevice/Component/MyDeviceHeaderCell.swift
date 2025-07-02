@@ -14,6 +14,7 @@ class MyDeviceHeaderCell: UICollectionViewCell {
     let weekView = MyDeviceHeaderContentView()
     let pageControl = JXPageControlEllipse()
     let contentWidth = CGFloat.screenWidth - 40*CGFloat.widthSize()
+    var onTouch:(() -> ())?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +32,10 @@ class MyDeviceHeaderCell: UICollectionViewCell {
         if let week = data.curWeekMetrics{
             self.weekView.bind(data: week)
         }
+    }
+    
+    @objc func touchView(){
+        self.onTouch?()
     }
     
     func initUI(){
@@ -56,20 +61,23 @@ class MyDeviceHeaderCell: UICollectionViewCell {
         let bgView = UIView()
         scrollView.addSubview(bgView)
         bgView.snp.makeConstraints{
-            $0.leading.top.bottom.equalToSuperview()
+            $0.leading.top.equalToSuperview()
             $0.width.equalTo(2*contentWidth)
             $0.trailing.equalToSuperview()
+            $0.height.equalTo(105*CGFloat.widthSize())
         }
         
         
        
         todayView.numTitle.text = "当日"
+        todayView.addTarget(self, action: #selector(touchView), for: .touchUpInside)
         bgView.addSubview(todayView)
         todayView.snp.makeConstraints{
             $0.leading.top.bottom.equalToSuperview()
             $0.width.equalTo(contentWidth)
         }
-     
+        
+        weekView.addTarget(self, action: #selector(touchView), for: .touchUpInside)
         weekView.numTitle.text = "本周"
         bgView.addSubview(weekView)
         weekView.snp.makeConstraints{
@@ -103,7 +111,7 @@ extension MyDeviceHeaderCell: UIScrollViewDelegate{
     }
 }
 
-class MyDeviceHeaderContentView: UIView {
+class MyDeviceHeaderContentView: UIButton {
     let capacityTitle = MyDeviceHeaderTitleView()
     let nitrogenTitle = MyDeviceHeaderTitleView()
     let electriTitle = MyDeviceHeaderTitleView()

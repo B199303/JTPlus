@@ -53,7 +53,7 @@ class MyDeviceDetailProgressCell: UITableViewCell {
         leftTitle.textAlignment = .left
         leftTitle.font = .textFont_14_medium
         leftTitle.textColor = .grayColor66
-        leftTitle.text = "最近运行时长"
+        leftTitle.text = "今日运行时长"
         leftBg.addSubview(leftTitle)
         
         let leftCircle = CircularProgressView(clockwise: false, lineColor: .blueColor51)
@@ -93,7 +93,7 @@ class MyDeviceDetailProgressCell: UITableViewCell {
         rightTitle.textAlignment = .left
         rightTitle.font = .textFont_14_medium
         rightTitle.textColor = .grayColor66
-        rightTitle.text = "累计运行时长"
+        rightTitle.text = "本周运行时长"
         rightBg.addSubview(rightTitle)
         
         let rightCircle = CircularProgressView(clockwise: true, lineColor: .blueColor1E)

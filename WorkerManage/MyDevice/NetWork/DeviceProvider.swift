@@ -182,13 +182,49 @@ class DeviceProvider {
         }
     }
     
-    func getDeviceAlarmList(page:Int, startTime:String? = nil, endTime:String? = nil) -> Single<DeviceAlarmList>{
+    func getDeviceAlarmList(deviceId:Int, page:Int, startTime:String? = nil, endTime:String? = nil, status:Int? = nil) -> Single<DeviceAlarmList>{
         return Single<DeviceAlarmList>.create { [weak self] observer in
             guard let `self` = self else {
                 return Disposables.create()
             }
-            let innderDisposable = self.provider.rx.request(.alarmList(limit: 10, page: page, startTime: startTime, endTime: endTime))
+            let innderDisposable = self.provider.rx.request(.alarmList(deviceId: deviceId, limit: 10, page: page, startTime: startTime, endTime: endTime, status: status))
                 .mapObject(DeviceAlarmList.self)
+                .subscribe { response in
+                    observer(.success(response))
+                } onFailure: { err in
+                    print(err)
+                }
+            return Disposables.create {
+                innderDisposable.dispose()
+            }
+        }
+    }
+    
+    func getDeviceLastAlarmList() -> Single<DeviceAlarmList>{
+        return Single<DeviceAlarmList>.create { [weak self] observer in
+            guard let `self` = self else {
+                return Disposables.create()
+            }
+            let innderDisposable = self.provider.rx.request(.lastAlarmList)
+                .mapObject(DeviceAlarmList.self)
+                .subscribe { response in
+                    observer(.success(response))
+                } onFailure: { err in
+                    print(err)
+                }
+            return Disposables.create {
+                innderDisposable.dispose()
+            }
+        }
+    }
+    
+    func getDeviceMetricsList(deviceId:Int? = nil, productId:Int? = nil, startTime:String? = nil, endTime:String? = nil) -> Single<DeviceMetricsList>{
+        return Single<DeviceMetricsList>.create { [weak self] observer in
+            guard let `self` = self else {
+                return Disposables.create()
+            }
+            let innderDisposable = self.provider.rx.request(.getDeviceMetricsList(deviceId: deviceId, productId: productId, startTime: startTime, endTime: endTime))
+                .mapObject(DeviceMetricsList.self)
                 .subscribe { response in
                     observer(.success(response))
                 } onFailure: { err in

@@ -75,9 +75,6 @@ class ScanViewController: LBXScanViewController {
                                             userInfo: ["urlstr": str])
         }
         self.navigationController?.popViewController()
-//        let vc = ScanResultController()
-//        vc.codeResult = result
-//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func drawBottomItems() {
@@ -109,7 +106,6 @@ class ScanViewController: LBXScanViewController {
         btnPhoto.center = CGPoint(x: bottomItemsView!.frame.width/4, y: bottomItemsView!.frame.height/2)
         btnPhoto.setImage(UIImage(named: "CodeScan.bundle/qrcode_scan_btn_photo_nor"), for: UIControl.State.normal)
         btnPhoto.setImage(UIImage(named: "CodeScan.bundle/qrcode_scan_btn_photo_down"), for: UIControl.State.highlighted)
-//        btnPhoto.addTarget(self, action: Selector(("openPhotoAlbum")), for: UIControlEvents.touchUpInside)
 
         btnPhoto.addTarget(self, action: #selector(openPhotoAlbum), for: UIControl.Event.touchUpInside)
         
